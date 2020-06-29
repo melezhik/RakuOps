@@ -128,3 +128,23 @@ Step 7/7 : RUN raku -MSparrow6::DSL sparrowfile
 17:04:02 06/29/2020 [repository] installing bash, version 0.002001
 17:04:05 06/29/2020 [bash: echo Hello World] Hello World
 ```
+
+# Build all plugins 
+
+```
+$ cd ~/sparrow-plugins
+$ find  -maxdepth 2 -mindepth 2 -name sparrow.json -execdir s6 --upload \;
+17:11:56 06/29/2020 [repository] upload plugin
+17:11:56 06/29/2020 [repository] upload ado-read-variable-groups@0.0.1
+17:11:56 06/29/2020 [repository] upload plugin
+17:11:56 06/29/2020 [repository] upload ambari-hosts@0.0.1
+17:11:57 06/29/2020 [repository] upload plugin
+17:11:57 06/29/2020 [repository] upload ansible-install@0.0.2
+17:11:58 06/29/2020 [repository] upload plugin
+17:11:58 06/29/2020 [repository] upload ansible-tutorial@0.0.1
+17:11:59 06/29/2020 [repository] upload plugin
+17:11:59 06/29/2020 [repository] upload app-cpm-wrapper@0.0.6
+... output truncated ...
+```
+
+
