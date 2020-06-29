@@ -72,13 +72,15 @@ unknown plugin bash
 
 # Create local sparrow repository
 
+`$ s6 --repo-init local`
+
 ```
-$ s6 --repo-init local
 16:41:31 06/29/2020 [repository] repo initialization
 16:41:31 06/29/2020 [repository] initialize Sparrow6 repository for /home/scheck/repo
+```
 
-$ git clone https://github.com/melezhik/sparrow-plugins
-
+```
+$ git clone https://github.com/melezhik/sparrow-plugins`
 $ cd sparrow-plugins/bash
 $ s6 --upload
 16:41:36 06/29/2020 [repository] upload plugin
@@ -99,6 +101,7 @@ RUN raku -MSparrow6::DSL sparrowfile
 ```
 
 `$ docker build --tag rakuops:1.0 .`
+
 ```
 Sending build context to Docker daemon  11.26kB
 Step 1/7 : FROM jjmerelo/alpine-raku
