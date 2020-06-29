@@ -41,3 +41,10 @@ Removing intermediate container ae2a0dc8848f
 Successfully built a2cbc605ec5e
 Successfully tagged rakuops:1.0
 ```
+
+`$ docker images`
+
+```
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+rakuops                1.0                 a2cbc605ec5e        3 minutes ago       139MB
+```
