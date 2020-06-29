@@ -127,6 +127,8 @@ $ s6 --upload
 16:41:36 06/29/2020 [repository] upload bash@0.2.1
 ```
 
+# Copy repository to docker cache
+
 `$ cp -r ~/repo .`
 
 `$ cat Dockerfile`
