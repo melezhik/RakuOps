@@ -84,3 +84,45 @@ $ s6 --upload
 16:41:36 06/29/2020 [repository] upload plugin
 16:41:36 06/29/2020 [repository] upload bash@0.2.1
 ```
+
+`cp -r ~/repo .`
+
+`cat Dockerfile`
+
+```dockerfile
+ADD sparrowfile .
+# ...
+RUN apk add bash perl
+COPY repo/ /root/repo/
+RUN s6 --index-update
+RUN raku -MSparrow6::DSL sparrowfile
+```
+
+`$ docker build --tag rakuops:1.0 .`
+```
+Sending build context to Docker daemon  11.26kB
+Step 1/7 : FROM jjmerelo/alpine-raku
+ ---> c0ecb08ec5db
+Step 2/7 : RUN zef install --/test Sparrow6
+ ---> Using cache
+ ---> a2cbc605ec5e
+Step 3/7 : RUN apk add bash perl
+ ---> Using cache
+ ---> d9011d4e64db
+Step 4/7 : ADD sparrowfile .
+ ---> Using cache
+ ---> adb1df57e1c0
+Step 5/7 : COPY repo/ /root/repo/
+ ---> Using cache
+ ---> 3ed6bfaf4183
+Step 6/7 : RUN s6 --index-update
+ ---> Running in 6edfc480bde7
+17:03:59 06/29/2020 [repository] update local index
+17:03:59 06/29/2020 [repository] index updated from file:///root/repo/api/v1/index
+Removing intermediate container 6edfc480bde7
+ ---> 7eccb5889a80
+Step 7/7 : RUN raku -MSparrow6::DSL sparrowfile
+ ---> Running in af6eb4b2d9ee
+17:04:02 06/29/2020 [repository] installing bash, version 0.002001
+17:04:05 06/29/2020 [bash: echo Hello World] Hello World
+```
