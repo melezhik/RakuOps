@@ -1,4 +1,23 @@
+# Docker Sparrow
+
+How to build Docker containers using Raku and Sparrow
+
+# Prerequisites
+
+* git
+
+* docker
+
+* Sparrow
+
+`zef install --/test Sparrow6`
+
 # Bootstrap Sparrow
+
+```
+$ mkdir -p RakuOps/docker-sparrow`
+$ cd RakuOps/docker-sparrow
+```
 
 `$ cat Dockerfile`
 
@@ -99,8 +118,8 @@ unknown plugin bash
 Upload `bash` plugin
 
 ```
-$ git clone https://github.com/melezhik/sparrow-plugins`
-$ cd sparrow-plugins/bash
+$ git clone https://github.com/melezhik/sparrow-plugins ~/sparrow-plugins`
+$ cd ~/sparrow-plugins/bash
 $ s6 --upload
 16:41:36 06/29/2020 [repository] upload plugin
 16:41:36 06/29/2020 [repository] upload bash@0.2.1
@@ -165,4 +184,65 @@ $ find  -maxdepth 2 -mindepth 2 -name sparrow.json -execdir s6 --upload \;
 ... output truncated ...
 ```
 
+Update docker cache
+
+```
+$ cd ~/RakuOps/docker-sparrow/
+$ cp -r ~/repo .
+```
+
+Update sparrow scenario
+
+`cat sparrowfile`
+
+```
+package-install "nano";
+```
+
+`$ docker build --tag rakuops:1.0 .`
+
+```
+Sending build context to Docker daemon  2.012MB
+Step 1/7 : FROM jjmerelo/alpine-raku
+ ---> c0ecb08ec5db
+Step 2/7 : RUN zef install --/test Sparrow6
+ ---> Using cache
+ ---> a2cbc605ec5e
+Step 3/7 : RUN apk add bash perl
+ ---> Using cache
+ ---> d9011d4e64db
+Step 4/7 : ADD sparrowfile .
+ ---> 7a3bb7329d46
+Step 5/7 : COPY repo/ /root/repo/
+ ---> 0c029612c55c
+Step 6/7 : RUN s6 --index-update
+ ---> Running in 356d29ed8049
+17:16:56 06/29/2020 [repository] update local index
+17:16:56 06/29/2020 [repository] index updated from file:///root/repo/api/v1/index
+Removing intermediate container 356d29ed8049
+ ---> 18876a3d6396
+Step 7/7 : RUN raku -MSparrow6::DSL sparrowfile
+ ---> Running in bd07fecae4f0
+17:16:58 06/29/2020 [repository] installing bash, version 0.002001
+17:17:00 06/29/2020 [bash: echo Hello World] Hello World
+17:17:00 06/29/2020 [repository] installing package-generic, version 0.004001
+17:17:02 06/29/2020 [install package(s): nano.perl] fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+17:17:02 06/29/2020 [install package(s): nano.perl] fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+17:17:02 06/29/2020 [install package(s): nano.perl] v3.12.0-103-g1699efe1cd [http://dl-cdn.alpinelinux.org/alpine/v3.12/main]
+17:17:02 06/29/2020 [install package(s): nano.perl] v3.12.0-106-g2b11e345c6 [http://dl-cdn.alpinelinux.org/alpine/v3.12/community]
+17:17:02 06/29/2020 [install package(s): nano.perl] OK: 12730 distinct packages available
+17:17:03 06/29/2020 [install package(s): nano.perl] trying to install nano ...
+17:17:03 06/29/2020 [install package(s): nano.perl] installer - apk
+17:17:03 06/29/2020 [install package(s): nano.perl] (1/2) Installing libmagic (5.38-r0)
+17:17:03 06/29/2020 [install package(s): nano.perl] (2/2) Installing nano (4.9.3-r0)
+17:17:03 06/29/2020 [install package(s): nano.perl] Executing busybox-1.31.1-r19.trigger
+17:17:03 06/29/2020 [install package(s): nano.perl] OK: 67 MiB in 32 packages
+17:17:03 06/29/2020 [install package(s): nano.perl] Installed:                                Available:
+17:17:03 06/29/2020 [install package(s): nano.perl] nano-4.9.3-r0                           = 4.9.3-r0
+17:17:03 06/29/2020 [install package(s): nano.perl] nano
+Removing intermediate container bd07fecae4f0
+ ---> 408d35e1e3fd
+Successfully built 408d35e1e3fd
+Successfully tagged rakuops:1.0
+```
 
