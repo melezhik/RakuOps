@@ -120,7 +120,7 @@ unknown plugin bash
 Upload `bash` plugin
 
 ```
-$ git clone https://github.com/melezhik/sparrow-plugins ~/sparrow-plugins`
+$ git clone https://github.com/melezhik/sparrow-plugins ~/sparrow-plugins
 $ cd ~/sparrow-plugins/bash
 $ s6 --upload
 16:41:36 06/29/2020 [repository] upload plugin
