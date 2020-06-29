@@ -50,7 +50,8 @@ rakuops                1.0                 a2cbc605ec5e        3 minutes ago    
 ```
 
 
-$ docker build --tag rakuops:1.0 .
+`$ docker build --tag rakuops:1.0 .`
+
 ```
 Sending build context to Docker daemon  5.632kB
 Step 1/4 : FROM jjmerelo/alpine-raku
