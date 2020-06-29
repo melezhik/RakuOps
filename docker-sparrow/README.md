@@ -106,6 +106,8 @@ unknown plugin bash
   in block <unit> at sparrowfile line 1
 ```
 
+`unknown plugin bash` erros means you need to provision Docker with Sparrow repository.
+
 # Create local sparrow repository
 
 `$ s6 --repo-init local`
