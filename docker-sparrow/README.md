@@ -1,3 +1,5 @@
+# Bootstrap Sparrow
+
 `$ cat Dockerfile`
 
 ```dockerfile
@@ -50,6 +52,20 @@ rakuops                1.0                 a2cbc605ec5e        3 minutes ago    
 ```
 
 
+# First run
+
+`$ cat sparrowfile`
+```raku
+bash "echo Hello World";
+```
+
+`$ cat Dockerfile`
+
+```dockerfile
+ADD sparrowfile
+RUN raku -M Sparrow6::DSL sparrwofile
+```
+
 `$ docker build --tag rakuops:1.0 .`
 
 ```
@@ -79,6 +95,8 @@ unknown plugin bash
 16:41:31 06/29/2020 [repository] repo initialization
 16:41:31 06/29/2020 [repository] initialize Sparrow6 repository for /home/scheck/repo
 ```
+
+Upload `bash` plugin
 
 ```
 $ git clone https://github.com/melezhik/sparrow-plugins`
