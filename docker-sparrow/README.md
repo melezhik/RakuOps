@@ -93,8 +93,6 @@ $ s6 --upload
 `cat Dockerfile`
 
 ```dockerfile
-ADD sparrowfile .
-# ...
 RUN apk add bash perl
 COPY repo/ /root/repo/
 RUN s6 --index-update
