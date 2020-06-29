@@ -193,7 +193,7 @@ $ cp -r ~/repo .
 
 Update sparrow scenario
 
-`cat sparrowfile`
+`$ cat sparrowfile`
 
 ```
 package-install "nano";
