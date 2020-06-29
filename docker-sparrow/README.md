@@ -195,7 +195,7 @@ Update sparrow scenario
 
 `$ cat sparrowfile`
 
-```
+```raku
 package-install "nano";
 ```
 
