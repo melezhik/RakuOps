@@ -15,7 +15,7 @@ How to build Docker containers using Raku and Sparrow
 # Bootstrap Sparrow
 
 ```
-$ mkdir -p RakuOps/docker-sparrow`
+$ mkdir -p RakuOps/docker-sparrow
 $ cd RakuOps/docker-sparrow
 ```
 
