@@ -1,11 +1,14 @@
-$ cat Dockerfile
+`$ cat Dockerfile`
 
 ```dockerfile
 FROM jjmerelo/alpine-raku
 RUN zef install --/test Sparrow6
 ```
 
-$ docker build --tag rakuops:1.0 .
+
+`$ docker build --tag rakuops:1.0 .`
+
+```
 Sending build context to Docker daemon  2.048kB
 Step 1/2 : FROM jjmerelo/alpine-raku
 latest: Pulling from jjmerelo/alpine-raku
@@ -37,3 +40,4 @@ Removing intermediate container ae2a0dc8848f
  ---> a2cbc605ec5e
 Successfully built a2cbc605ec5e
 Successfully tagged rakuops:1.0
+```
